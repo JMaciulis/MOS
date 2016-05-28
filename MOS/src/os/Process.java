@@ -166,4 +166,3 @@ public abstract class Process implements Comparable<Process> {
 		return true;
 	}
 }
->>>>>>> branch 'master' of https://github.com/JMaciulis/MOS.git
