@@ -5,10 +5,19 @@
  */
 package os;
 
+import os.OS.IntType;
+
 /**
  *
  * @author Mantas
  */
-public class InteruptMessage {
-    
+public class InterruptMessage {
+
+	public IntType action;
+	public int procIntId;
+	public InterruptMessage(IntType action, int procIntId) {
+		this.action = action;
+		this.procIntId = procIntId;
+	}
+
 }
