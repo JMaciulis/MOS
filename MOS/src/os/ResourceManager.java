@@ -76,7 +76,7 @@ private OS os;
 							e.printStackTrace();
 						}
 						
-						FResource vMemRes = os.createSimpleResource(
+						Resource vMemRes = os.createSimpleResource(
 								os.starStopProc, 
 								ResName.VARTOTOJO_ATMINTIS, vMem);
 						
