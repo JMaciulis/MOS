@@ -9,6 +9,7 @@ import os.OS;
 
 public class InputPanel extends javax.swing.JPanel {
     // Paulius
+    //darius
     private static final long serialVersionUID = 4668104880966701462L;
     private OS os;
     
