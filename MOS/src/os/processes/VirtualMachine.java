@@ -38,11 +38,8 @@ public class VirtualMachine extends os.Process {
 	public VMemory memory;
 		
 		
-    public VirtualMachine(int intId, ProcName extId, String pName, LinkedList<Process> processList, Process parentProcess, CPU cpu, OS os, ProcessState pState, int priority) {
-		
+    public VirtualMachine(int intId, ProcName extId, String pName, LinkedList<os.Process> processList, os.Process parentProcess, CPU cpu, OS os, ProcessState pState, int priority) {
         super(intId, extId, pName, processList, parentProcess, cpu, os, pState, priority);
-		
-        //For ease of use
         this.regKS = cpu.getRegKS();
         this.regSK = cpu.getRegSK();
         this.regSV = cpu.getRegSV();
