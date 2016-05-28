@@ -35,7 +35,7 @@ public abstract class Process implements Comparable<Process> {
 			Process parentProcess, 
 			CPU cpu, OS os, 
 			ProcessState pState, int priority) {
-        nxtInstruction = 1;
+		nxtInstruction = 1;
 		this.os = os;
 		pDesc = new ProcessDescriptor(intId, extId, pName, 
 				processList, parentProcess, this, cpu, os, 
@@ -124,11 +124,11 @@ public abstract class Process implements Comparable<Process> {
 	}
 	
 	public void setTimer(int newVal) {
-		this.pDesc.cpu.regTIME.setValue(newVal);
+		this.pDesc.cpu.regTI.setValue(newVal);
 	}
 	
 	public int getTimer() {
-		return this.pDesc.cpu.regTIME.getValue();
+		return this.pDesc.cpu.regTI.getValue();
 	}
 	
 	public void resetTimer() {
@@ -142,7 +142,7 @@ public abstract class Process implements Comparable<Process> {
 	}
 	
 	protected void decTimer() {
-		int tmp = pDesc.cpu.regTIME.getValue();
+		int tmp = pDesc.cpu.regTI.getValue();
 		
 		if (tmp > 0){
 			tmp--;
