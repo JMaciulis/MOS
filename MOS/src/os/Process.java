@@ -6,6 +6,7 @@
 package os;
 
 import java.util.LinkedList;
+
 import os.OS.ProcName;
 import os.OS.ProcessState;
 import os.machine.CPU;
@@ -39,8 +40,9 @@ public abstract class Process implements Comparable<Process> {
 		pDesc = new ProcessDescriptor(intId, extId, pName, 
 				processList, parentProcess, this, cpu, os, 
 				pState, priority);
-		if (parentProcess != null)
+		if (parentProcess != null) {
 			parentProcess.pDesc.childrenList.add(this);
+		}
 		interval = TIMER_INTERVAL;
 		setTimer(interval);
 		halted = false;
@@ -54,13 +56,15 @@ public abstract class Process implements Comparable<Process> {
 	public void fullStep(){
 		resetTimer();
 		
-		if (!halted)
+		if (!halted) {
 			step();
+		}
 		
 		decTimer();
 		if (chkInterrupts() == 0){
-			if (getTimer() == 0)
+			if (getTimer() == 0) {
 				timerInterrupt();
+			}
 		}
 	}
 	
@@ -87,10 +91,11 @@ public abstract class Process implements Comparable<Process> {
 
 	@Override
 	public int compareTo(Process o){
-		if (this.pDesc.priority < o.pDesc.priority)
+		if (this.pDesc.priority < o.pDesc.priority) {
 			return 1;
-		else if (this.pDesc.priority > o.pDesc.priority)
+		} else if (this.pDesc.priority > o.pDesc.priority) {
 			return -1;
+		}
 		return 0;
 	}
 	
@@ -113,8 +118,9 @@ public abstract class Process implements Comparable<Process> {
 		saveCPU();
 		resetTimer();
 		os.stopProcess(this);
-		if (pDesc.extId == ProcName.VIRTUAL_MACHINE)
+		if (pDesc.extId == ProcName.VIRTUAL_MACHINE) {
 			decPriority();
+		}
 	}
 	
 	public void setTimer(int newVal) {
@@ -130,8 +136,9 @@ public abstract class Process implements Comparable<Process> {
 	}
 	
 	public void decPriority(){
-		if (pDesc.priority > 1)
+		if (pDesc.priority > 1) {
 			pDesc.priority--;
+		}
 	}
 	
 	protected void decTimer() {
