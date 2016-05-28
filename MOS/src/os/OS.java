@@ -175,39 +175,39 @@ public class OS implements Runnable {
 		switch (extId) {
 		case GET_LINE:
 			proc = new GetLine(intId, extId, "GetLine", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 91);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 91);
 			break;
 		case INTERRUPT:
 			proc = new Interrupt(intId, extId, "Int", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 90);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 90);
 			break;
 		case JOB_GOVERNOR:
 			proc = new JobGovernor(intId, extId, "JobGov", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 89);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 89);
 			break;
 		case LOADER:
 			proc = new Loader(intId, extId, "Loader", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 88);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 88);
 			break;
 		case MAIN_PROC:
 			proc = new MainProc(intId, extId, "MainProc", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 92);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 92);
 			break;
 		case PRINT_LINE:
 			proc = new PrintLine(intId, extId, "PrintLine", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 91);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 91);
 			break;
 		case START_STOP:
 			proc = new StartStop(intId, extId, "StartStop", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 99);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 99);
 			break;
 		case VIRTUAL_MACHINE:
 			proc = new VirtualMachine(intId, extId, "VM", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 80);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 80);
 			break;
 		case WAIT_FOR_JOB:
 			proc = new WaitForJob(intId, extId, "WFJ", processes, creator,
-					realMachine.getCpu(), this, ProcessState.READY, 93);
+					realMachine.getCpu(), this, ProcessState.PASIRUOSES, 93);
 
 			break;
 		default:
@@ -496,14 +496,14 @@ public class OS implements Runnable {
 	}
 
 	private int getTimer() {
-		return realMachine.getCpu().getRegTIME().getValue();
+		return realMachine.getCpu().getRegTI().getValue();
 	}
 
 	public void decrementTimer() {
 		int timer = getTimer();
 		if (timer > 0) {
 			timer--;
-			realMachine.getCpu().getRegTIME().setValue(timer);
+			realMachine.getCpu().getRegTI().setValue(timer);
 		}
 	}
 
