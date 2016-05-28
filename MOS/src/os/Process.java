@@ -106,7 +106,7 @@ public abstract class Process implements Comparable<Process> {
 				"): [" + pDesc.pState + ";priority=" + 
 				pDesc.priority + 
 				";nxtInstruction="+ nxtInstruction + "]";
-		if (pDesc.pState == ProcessState.BLOCKED){
+		if (pDesc.pState == ProcessState.BLOKUOTAS){
 			str += " Waiting: " + pDesc.waitingFor.element();
 		}
 		return str;
