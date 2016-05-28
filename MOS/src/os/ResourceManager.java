@@ -105,18 +105,18 @@ private OS os;
 			
 			//No resource available or not all resources available
 			if (process.pDesc.waitingFor.size() == 0){
-				process.pDesc.pState = ProcessState.READY;
+				process.pDesc.pState = ProcessState.PASIRUOSES;
 				if (os.blockedProcesses.contains(process)){
 					os.blockedProcesses.remove(process);
 					os.readyProcesses.add(process);
 				}
 			} else {
-				if (process.pDesc.pState == ProcessState.READY){
-					process.pDesc.pState = ProcessState.BLOCKED;
+				if (process.pDesc.pState == ProcessState.PASIRUOSES){
+					process.pDesc.pState = ProcessState.BLOKUOTAS;
 					os.readyProcesses.remove(process);
 					os.blockedProcesses.add(process);
-				} else if (process.pDesc.pState == ProcessState.RUN){
-					process.pDesc.pState = ProcessState.BLOCKED;
+				} else if (process.pDesc.pState == ProcessState.VYKDOMAS){
+					process.pDesc.pState = ProcessState.BLOKUOTAS;
 					os.blockedProcesses.add(process);
 				}
 			}

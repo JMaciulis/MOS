@@ -6,7 +6,7 @@ public class ProcessingUtility {
 
     
     
-    private static void executeCommand(VirtualMachine machine, String command){
+    public static void executeCommand(VirtualMachine machine, String command){
         // Pagal komandu skaitliuko registra nuskaitoma komanda, nustatoma ar tokia yra, jei yra - ivykdoma
         //String komanda = gautiZodiPagalVirtualuAdresa(ks);
         //String komandosPr = komanda.substring(0, 2);

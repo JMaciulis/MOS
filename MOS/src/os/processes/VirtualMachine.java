@@ -19,24 +19,14 @@ import os.machine.CPU;
 import os.machine.ProcessingUtility;
 import os.virtualmachine.registers.Register2B;
 
-
-/**
- *
- * @author Mantas
- */
 public class VirtualMachine extends os.Process {
-	
-	public static int vmCount = 0;
-	
-	
-	//References to registers for ease of use
-	public Register2B regKS;
-        public Register2B regSK;
-        public Register2B regSV;
-	
-	
-	public VMemory memory;
-		
+    public static int vmCount = 0;
+
+    public Register2B regKS;
+    public Register2B regSK;
+    public Register2B regSV;
+
+    public VMemory memory;
 		
     public VirtualMachine(int intId, ProcName extId, String pName, LinkedList<os.Process> processList, os.Process parentProcess, CPU cpu, OS os, ProcessState pState, int priority) {
         super(intId, extId, pName, processList, parentProcess, cpu, os, pState, priority);
@@ -48,51 +38,49 @@ public class VirtualMachine extends os.Process {
 				
         vmCount++;
         saveCPU();
-	}
-	
-	
-	@Override
-	public void step() {
-		switch (nxtInstruction){
-		case 1:
-			//Request JOB in memory
-			if (os.requestResource(this, ResName.UZDUOTIS_VYKDYMUI)) {
-				nxtInstruction++;
-			} else {
-				setTimer(0);
-			}
-			break;
-		case 2:
-			//Take JOB
-			Resource memRes = ResourceManager.findResourceByExtId(
-					pDesc.ownedResList, ResName.UZDUOTIS_VYKDYMUI);
-			this.memory = (VMemory) memRes.getComponent();
-			pDesc.pName = memory.pName;
-			pDesc.cpu.regKS.setValInt(0);
-			os.destroyResource(memRes);
-			nxtInstruction++;
-			break;
-		case 3:
-			//STEP!
-			vmStep();
-			break;
-		case 4:
-			//Wait for resume
-			os.requestResource(this, ResName.RESUME_VM);
-			nxtInstruction = 5;
-			break;
-		case 5:
-			nxtInstruction = 3;
-			os.printStuffDevice("VM:" + pDesc.pName + " - RESUMING AFTER INT");
-			Resource resumeRes = ResourceManager.findResourceByExtId(
-					pDesc.ownedResList, ResName.RESUME_VM);
-			if (resumeRes != null) {
-				os.destroyResource(resumeRes);
-			}
-			
-			break;
-		}
-	}
+    }
+		
+    @Override
+    public void step() {
+        switch (nxtInstruction){
+            case 1:
+                //Request JOB in memory
+                if (os.requestResource(this, ResName.UZDUOTIS_VYKDYMUI)) {
+                    nxtInstruction++;
+                } else {
+                    setTimer(0);
+                }
+                break;
+            case 2:
+                //Take JOB
+                Resource memRes = ResourceManager.findResourceByExtId(
+                pDesc.ownedResList, ResName.UZDUOTIS_VYKDYMUI);
+                this.memory = (VMemory) memRes.getComponent();
+                pDesc.pName = memory.pName;
+                pDesc.cpu.regKS.setValInt(0);
+                os.destroyResource(memRes);
+                nxtInstruction++;
+                break;
+            case 3:
+                //STEP!
+                vmStep();
+                break;
+            case 4:
+                //Wait for resume
+                os.requestResource(this, ResName.RESUME_VM);
+                nxtInstruction = 5;
+                break;
+            case 5:
+                nxtInstruction = 3;
+                os.printStuffDevice("VM:" + pDesc.pName + " - RESUMING AFTER INT");
+                Resource resumeRes = ResourceManager.findResourceByExtId(
+                pDesc.ownedResList, ResName.RESUME_VM);
+                if (resumeRes != null) {
+                    os.destroyResource(resumeRes);
+                }	
+                break;
+        }
+    }
 
 	/**
 	 * VM job step
