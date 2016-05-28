@@ -35,7 +35,7 @@ public abstract class Process implements Comparable<Process> {
 			Process parentProcess, 
 			CPU cpu, OS os, 
 			ProcessState pState, int priority) {
-		nxtInstruction = 1;
+        nxtInstruction = 1;
 		this.os = os;
 		pDesc = new ProcessDescriptor(intId, extId, pName, 
 				processList, parentProcess, this, cpu, os, 
