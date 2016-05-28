@@ -4,7 +4,14 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.SwingUtilities;
+
+import os.machine.Machine;
+import os.processes.Interrupt;
+import os.processes.MainProc;
+import os.processes.StartStop;
+import os.processes.VirtualMachine;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,11 +36,11 @@ public class OS implements Runnable {
 	public static String TEST_FILEPATH3 = "fluffies/t_output.fluffy";
 
 	public enum ProcessState {
-		RUN, READY, STOPPED, BLOCKED
+		VYKDOMAS, PASIRUOSES, BLOKUOTAS_SUSTABDYTAS, PASIRUOSES_SUSTABDYTAS, BLOKUOTAS
 	}
 
 	public enum ProcName {
-		START_STOP, WAIT_FOR_JOB, MAIN_PROC, LOADER, JOB_GOVERNOR, VIRTUAL_MACHINE, INTERRUPT, PRINT_LINE, GET_LINE
+		INPUT, INTERRUPT, JOB_HELPER, LAUKIMAS, LOAD_PROGRAM, MAIN_PROC, OUTPUT, PROGRAM_TO_EXT_MEM, READER, START_STOP, VIRTUAL_MACHINE
 	}
 
 	public enum ResName {
@@ -45,7 +52,7 @@ public class OS implements Runnable {
 	}
 
 	public enum IntType {
-		READY,
+		PASIRUOSES,
 
 		// Lower priority interrupts
 		HALT, INPUT, OUTPUT,
@@ -409,10 +416,11 @@ public class OS implements Runnable {
 		proc.pDesc.waitingFor.add(res);
 		this.resMan.execute();
 
-		if (proc.pDesc.waitingFor.size() == 0)
+		if (proc.pDesc.waitingFor.size() == 0) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 	private int generateProcessInternalID() {
