@@ -1,4 +1,4 @@
 
 public class test {
-	int = 99955559;
+	int a = 99955559;
 }
