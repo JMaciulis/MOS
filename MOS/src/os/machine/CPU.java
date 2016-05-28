@@ -77,7 +77,7 @@ public class CPU {
         this.regSV = regSV;
     }
 
-    public void setRegSK(Register4B regSK) {
+    public void setRegSK(Register2B regSK) {
         this.regSK = regSK;
     }
 
