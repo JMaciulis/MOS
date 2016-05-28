@@ -47,7 +47,7 @@ public class Memory {
 				return i;
 			}
 		}
-		return -1; //-1 full
+		return -1;
 	}
 	
 	public int[] getFreeBlocksArray(int blocksNeeded){

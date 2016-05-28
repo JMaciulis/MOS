@@ -10,5 +10,23 @@ package os.machine;
  * @author Mantas
  */
 public class MemoryBlock {
-    
+	static final int DEFAULT_BLOCK_SIZE = 16;
+	
+	private Word[] block;
+	
+	private boolean used;
+	
+	public MemoryBlock(int size) {
+		this.block = new Word[size];
+		for (int i = 0; i < size; i++){
+			block[i] = new Word();
+		}
+	}
+	public MemoryBlock() {
+		this(DEFAULT_BLOCK_SIZE);
+	}
+	public Word getWordAtIdx(int index) {
+		return block[index];
+	}
+	
 }
