@@ -11,6 +11,7 @@ import os.OS;
 import os.OS.ProcName;
 import os.OS.ProcessState;
 import os.OS.ResName;
+import os.Resource;
 import os.machine.CPU;
 
 /**
@@ -59,28 +60,30 @@ public class StartStop extends os.Process {
 		//Memory
 		os.createResource(this, ResName.VARTOTOJO_ATMINTIS,
 				os.getRealMachine().getMemory());
-		os.createResource(this, ResName.IVEDIMO_IRENGINYS,
+		os.createResource(this, ResName.KANALAS_1,
 				os.getRealMachine().usrInputDevice);
-		os.createResource(this, ResName.ISVEDIMO_IRENGINYS
+		os.createResource(this, ResName.KANALAS_2
 				, os.getRealMachine().usrOutputDevice);
 	}
 	
 	private void createSystemProcesses() {
-		os.createProcess(this, ProcName.WAIT_FOR_JOB);
-		os.createProcess(this, ProcName.LOADER);
-		os.createProcess(this, ProcName.MAIN_PROC);
+		os.createProcess(this, ProcName.PROGRAM_TO_EXT_MEM);
+		os.createProcess(this, ProcName.LOAD_PROGRAM);
+		os.createProcess(this, ProcName.READER);
 		os.createProcess(this, ProcName.INTERRUPT);
-		os.createProcess(this, ProcName.GET_LINE);
-		os.createProcess(this, ProcName.PRINT_LINE);
+		os.createProcess(this, ProcName.OUTPUT);
+		os.createProcess(this, ProcName.INPUT);
+		os.createProcess(this, ProcName.LAUKIMAS);
+		os.createProcess(this, ProcName.MAIN_PROC);
 	}
 	
 	private void destroySystemResources() {
-		LinkedList<FResource> tmpList = new LinkedList<>();
-		for (FResource res : this.pDesc.createdResList) {
+		LinkedList<Resource> tmpList = new LinkedList<>();
+		for (Resource res : this.pDesc.createdResList) {
 			tmpList.add(res);
 		}
 		
-		for (FResource res : tmpList) {
+		for (Resource res : tmpList) {
 			os.destroyResource(res);
 		}
 	}
