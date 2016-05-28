@@ -9,6 +9,6 @@ package os;
  *
  * @author Mantas
  */
-public class VMemmory {
+public class VMemory {
     
 }
