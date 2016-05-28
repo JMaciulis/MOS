@@ -13,6 +13,9 @@ import os.OS.ProcName;
 import os.OS.ProcessState;
 import os.OS.ResName;
 import os.machine.CPU;
+import os.Process;
+import os.Resource;
+import os.ResourceManager;
 
 /**
  *
@@ -41,16 +44,16 @@ public class MainProc extends os.Process{
 			break;
 		case 3:
 			chkGovernors();
-			os.createProcess(this, ProcName.JOB_GOVERNOR);
+			os.createProcess(this, ProcName.JOB_HELPER);
 			nxtInstruction = 1;
 			break;
 		}
 	}
 
 	private void chkGovernors() {
-		JobGovernor govproc;
-		for (FProcess proc : pDesc.childrenList) {
-			govproc = (JobGovernor) proc;
+		JobHelper govproc;
+		for (os.Process proc : pDesc.childrenList) {
+			govproc = (JobHelper) proc;
 			if (govproc.isJobHalted){
 				os.destroyProcess(proc);
 			}
@@ -59,7 +62,7 @@ public class MainProc extends os.Process{
 	
 	private void takeFile() {
 		Resource fileRes;
-		fileRes = FResourceManager.findResourceByExtId(pDesc.ownedResList,
+		fileRes = ResourceManager.findResourceByExtId(pDesc.ownedResList,
 				ResName.UZDUOTIS_ISOR);
 		
 		if (fileRes == null){
