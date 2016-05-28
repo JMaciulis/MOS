@@ -28,5 +28,13 @@ public class MemoryBlock {
 	public Word getWordAtIdx(int index) {
 		return block[index];
 	}
-	
+	public boolean isUsed() {
+		return used;
+	}
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
+	public Word[] getBlock(){
+		return block;
+	}
 }
