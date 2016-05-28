@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package devices;
 
 import java.awt.event.ActionEvent;
@@ -12,21 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import os.OS;
 
-/**
- *
- * @author Mantas
- */
 public class InputPanel extends javax.swing.JPanel {
-
-	private static final long serialVersionUID = 4668104880966701462L;
-
-
-
-	private OS os;
+    // Paulius
+    private static final long serialVersionUID = 4668104880966701462L;
+    private OS os;
     
-    /**
-     * Creates new form inputPanel
-     */
     public InputPanel() {
         initComponents();
     }
