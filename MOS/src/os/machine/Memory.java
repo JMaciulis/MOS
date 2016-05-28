@@ -55,14 +55,15 @@ public class Memory {
 		int[] results = new int[blocksNeeded];
 		for(int i = 0; i < blocksNeeded; i++){
 			tmp = this.getFreeBlockIdx();
-			if(tmp = -1){
-				return OS.printStuff("FMem: ERROR - not enough memory");
+			if(tmp == -1){
+				OS.printStuff("FMem: ERROR - not enough memory");
+				return null;
 			} else {
 				this.blocks[tmp].setUsed(true);
 				results[i] = tmp;
 			}
-			return results;
 		}
+		return results;
 	}
 	
 	public void printMemory() {
@@ -110,7 +111,7 @@ public class Memory {
     }
 
     public void reset() {
-        for (Memory block : blocks) {
+        for (MemoryBlock block : blocks) {
             block.setUsed(false);
         }
     }
