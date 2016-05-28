@@ -7,6 +7,7 @@ package os.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import os.OS;
 
 /**
@@ -72,7 +73,7 @@ public class ControllsPanel extends javax.swing.JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				os.createResource(os.starStopProc,
-						OS.ResName.MOS_PABAIGA, "end");
+						OS.ResName.SHUTDOWN, "end");
 				resetBut.setEnabled(true);
 			}
 		});
@@ -106,6 +107,7 @@ public class ControllsPanel extends javax.swing.JPanel {
 		setSpeedBut.setText("Set");
 
 		speedField.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				speedFieldActionPerformed(evt);
 			}
