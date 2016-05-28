@@ -90,7 +90,7 @@ public class StartStop extends os.Process {
 	
 	private void destroySystemProcesses() {
 		LinkedList<Process> tmpList = new LinkedList<>();
-		for (Process proc : this.pDesc.childrenList) {
+		for (os.Process proc : this.pDesc.childrenList) {
 			tmpList.add(proc);
 		}
 		
