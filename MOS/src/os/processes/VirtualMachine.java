@@ -30,10 +30,10 @@ public class VirtualMachine extends os.Process {
 	
 	
 	//References to registers for ease of use
-	public Register4B regR1, regR2;
-	public Register2B regIC;
-	public RegisterLogicByte regC;
-	public Register4B regSP;
+	public Register2B regKS;
+        public Register2B regSK;
+        public Register2B regSV;
+	
 	
 	public VMemory memory;
 		
@@ -45,11 +45,9 @@ public class VirtualMachine extends os.Process {
 				priority);
 		
 		//For ease of use
-		this.regC = cpu.getRegC();
-		this.regIC = cpu.getRegIC();
-		this.regR1 = cpu.getRegR1();
-		this.regR2 = cpu.getRegR2();
-		this.regSP = cpu.getRegSP();
+		this.regKS = cpu.getRegKS();
+		this.regSK = cpu.getRegSK();
+		this.regSV = cpu.getRegSV();
 				
 		this.pDesc.savedState.saveState(cpu);
 				
