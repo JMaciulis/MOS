@@ -17,7 +17,7 @@ public class InputPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void initInput(Process initializer){
+    public void initInput(os.Process initializer){
     	String tmp = initializer.pDesc.intId + ":" +
     			initializer.pDesc.extId + ":" +
     			initializer.pDesc.pName;
