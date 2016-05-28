@@ -73,7 +73,7 @@ public class VirtualMachine extends os.Process {
 					pDesc.ownedResList, ResName.UZDUOTIS_VYKDYMUI);
 			this.memory = (VMemory) memRes.getComponent();
 			pDesc.pName = memory.pName;
-			pDesc.cpu.regIC.setValInt(0);
+			pDesc.cpu.regKS.setValInt(0);
 			os.destroyResource(memRes);
 			nxtInstruction++;
 			break;
@@ -112,15 +112,15 @@ public class VirtualMachine extends os.Process {
 		}
 		
 		try {
-			ProcessingUtility.processCommand(this, cmd);
+			ProcessingUtility.executeCommand(this, cmd);
 		} catch (IllegalArgumentException e){
 			OS.printStuff(e.toString());
 			pDesc.cpu.regPI.setValue(1);
 		}
 		
-		if (pDesc.cpu.regIC.getValInt() == tmpIC){
+		if (pDesc.cpu.regKS.getValInt() == tmpIC){
 			tmpIC++;
-			pDesc.cpu.regIC.setValInt(tmpIC);
+			pDesc.cpu.regKS.setValInt(tmpIC);
 		}
 		
 		saveCPU();
@@ -144,7 +144,7 @@ public class VirtualMachine extends os.Process {
 	 */
 	private String getCommandAtIC(){
 		String tmp = memory.getWordAtAddress(
-				pDesc.cpu.regIC.getValInt()).getVal();
+				pDesc.cpu.regKS.getValInt()).getVal();
 		return tmp;
 	}
 	
@@ -187,46 +187,27 @@ public class VirtualMachine extends os.Process {
 		return this.pDesc.cpu;
 	}
 	
-	public Register4B getRegR1() {
-		return regR1;
+	public Register2B getRegKS() {
+		return regKS;
+	}
+        public Register2B getRegSK() {
+		return regSK;
+	}
+        public Register2B getRegSV() {
+		return regSV;
 	}
 
-	public void setRegR1(Register4B regR1) {
-		this.regR1 = regR1;
+	public void setRegKS(Register2B reg) {
+		this.regKS = reg;
+	}
+        public void setRegSK(Register2B reg) {
+		this.regSK = reg;
+	}
+        public void setRegSV(Register2B reg) {
+		this.regSV = reg;
 	}
 
-	public Register4B getRegR2() {
-		return regR2;
-	}
-
-	public void setRegR2(Register4B regR2) {
-		this.regR2 = regR2;
-	}
-
-	public Register2B getRegIC() {
-		return regIC;
-	}
-
-	public void setRegIC(Register2B regIC) {
-		this.regIC = regIC;
-	}
-
-	public RegisterLogicByte getRegC() {
-		return regC;
-	}
-
-	public void setRegC(RegisterLogicByte regC) {
-		this.regC = regC;
-	}
-
-	public Register4B getRegSP() {
-		return regSP;
-	}
-
-	public void setRegSP(Register4B regSP) {
-		this.regSP = regSP;
-	}
-
+	
 	public VMemory getMemory() {
 		return memory;
 	}
