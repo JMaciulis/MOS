@@ -6,6 +6,7 @@
 package os;
 
 import java.util.LinkedList;
+
 import os.OS.ProcName;
 import os.OS.ProcessState;
 import os.OS.ResName;
@@ -55,7 +56,7 @@ public class ProcessDescriptor {
 		this.os = os;
 		
 		this.savedState = new RegState();
-		this.pState = ProcessState.READY;
+		this.pState = ProcessState.PASIRUOSES;
 		
 		childrenList = new LinkedList<>();
 		createdResList = new LinkedList<>();
