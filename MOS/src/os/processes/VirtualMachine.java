@@ -12,13 +12,13 @@ import os.OS.ProcName;
 import os.OS.ProcessState;
 import os.OS.ResName;
 import os.ProcessDescriptor;
+import os.Resource;
 import os.ResourceManager;
 import os.VMemory;
 import os.machine.CPU;
 import os.machine.ProcessingUtility;
 import os.virtualmachine.registers.Register2B;
-import os.virtualmachine.registers.Register4B;
-import os.virtualmachine.registers.RegisterLogicByte;
+
 
 /**
  *
@@ -38,21 +38,16 @@ public class VirtualMachine extends os.Process {
 	public VMemory memory;
 		
 		
-	public VirtualMachine(int intId, ProcName extId, String pName,
-			LinkedList<Process> processList, Process parentProcess, CPU cpu,
-			OS os, ProcessState pState, int priority) {
-		super(intId, extId, pName, processList, parentProcess, cpu, os, pState,
-				priority);
-		
-		//For ease of use
-		this.regKS = cpu.getRegKS();
-		this.regSK = cpu.getRegSK();
-		this.regSV = cpu.getRegSV();
+    public VirtualMachine(int intId, ProcName extId, String pName, LinkedList<os.Process> processList, os.Process parentProcess, CPU cpu, OS os, ProcessState pState, int priority) {
+        super(intId, extId, pName, processList, parentProcess, cpu, os, pState, priority);
+        this.regKS = cpu.getRegKS();
+        this.regSK = cpu.getRegSK();
+        this.regSV = cpu.getRegSV();
 				
-		this.pDesc.savedState.saveState(cpu);
+        this.pDesc.savedState.saveState(cpu);
 				
-		vmCount++;
-		saveCPU();
+        vmCount++;
+        saveCPU();
 	}
 	
 	
@@ -103,7 +98,7 @@ public class VirtualMachine extends os.Process {
 	 * VM job step
 	 */
 	private void vmStep() {
-		int tmpIC = pDesc.cpu.regIC.getValInt();
+		int tmpIC = pDesc.cpu.regKS.getValInt();
 		
 		String cmd = getCommandAtIC();
 		if (cmd.equals("HALT")){
@@ -211,7 +206,6 @@ public class VirtualMachine extends os.Process {
 	public VMemory getMemory() {
 		return memory;
 	}
-
 	public void setMemory(VMemory memory) {
 		this.memory = memory;
 	}
