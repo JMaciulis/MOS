@@ -269,26 +269,26 @@ public class OS implements Runnable {
 	 * 
 	 * @param proc
 	 */
-	public void stopProcess(FProcess proc) {
+	public void stopProcess(Process proc) {
 		if (runProcess.pDesc.intId == proc.pDesc.intId) {
 			runProcess = null;
 		}
 
 		switch (proc.pDesc.pState) {
-		case BLOCKED:
+		case BLOKUOTAS:
 			blockedProcesses.remove(proc);
 			stoppedProcesses.add(proc);
-			proc.pDesc.pState = ProcessState.STOPPED;
+			proc.pDesc.pState = ProcessState.BLOKUOTAS_SUSTABDYTAS;
 			break;
-		case READY:
+		case PASIRUOSES:
 			readyProcesses.remove(proc);
 			stoppedProcesses.add(proc);
-			proc.pDesc.pState = ProcessState.STOPPED;
+			proc.pDesc.pState = ProcessState.PASIRUOSES_SUSTABDYTAS;
 			break;
-		case RUN:
+		case VYKDOMAS:
 			runProcess = null;
 			readyProcesses.add(proc);
-			proc.pDesc.pState = ProcessState.READY;
+			proc.pDesc.pState = ProcessState.PASIRUOSES;
 			break;
 		default:
 			break;
@@ -303,7 +303,7 @@ public class OS implements Runnable {
 		if (this.stoppedProcesses.contains(proc)) {
 			this.stoppedProcesses.remove(proc);
 			this.readyProcesses.add(proc);
-			proc.pDesc.pState = ProcessState.READY;
+			proc.pDesc.pState = ProcessState.PASIRUOSES;
 		} else {
 			OS.printStuff("ERROR: process is not stopped");
 		}
@@ -328,28 +328,24 @@ public class OS implements Runnable {
 		switch (extId) {
 		// Vienkartiniai
 		case VARTOTOJO_ATMINTIS:
-		case UZDUOTIS_VM:
-		case UZDUOTIS_ISOR:
-		case IVEDIMO_SRAUTAS:
-		case IVEDIMO_SRAUTAS2:
-		case UZDUOTIS_MP:
-		case IVESTA_EILUTE:
-		case ISVESTA_EILUTE:
-		case EILUTE_ATMINTYJE:
-		case PRANESIMAS_LOADER:
-		case PRANESIMAS_PERTR:
+		case INPUT:
+		case DO_INPUT:
+		case OUTPUT:
+		case DO_OUTPUT:
+		case PROGRAMA_PARENGTA:
+		case ISKELK_PROGRAMA:
+		case PROGRAMA_ISKELTA:
 		case PERTRAUKIMAS:
-		case PRANESIMAS_GETLINE:
-		case MOS_PABAIGA:
-		case UZDUOTIS_VYKDYMUI:
-		case RESUME_VM:
+		case INTERRUPT:
+		case PAKRAUK_PROGRAMA:
+		case LAUKIAMA:
 
 			res = new Resource(intId, extId, this, creator, false, component);
 			break;
 
 		// Daugkartiniai
-		case IVEDIMO_IRENGINYS:
-		case ISVEDIMO_IRENGINYS:
+		case KANALAS_1:
+		case KANALAS_2:
 
 			res = new Resource(intId, extId, this, creator, false, component);
 			break;
