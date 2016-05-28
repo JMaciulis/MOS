@@ -9,6 +9,6 @@ package os.machine;
  *
  * @author Mantas
  */
-public class VirtualMachine {
+public class Machine {
     
 }
