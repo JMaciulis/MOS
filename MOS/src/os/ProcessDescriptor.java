@@ -18,6 +18,9 @@ import os.machine.CPU;
  */
 public class ProcessDescriptor {
 
+	public ProcName extId; // isorinis proceso vardas (ID)
+	public int intId; // vidinis id
+
 	public LinkedList<Process> processList;
 	public LinkedList<Process> childrenList;
 	
@@ -25,8 +28,6 @@ public class ProcessDescriptor {
 	public LinkedList<Resource> ownedResList;
 	public LinkedList<ResName> waitingFor;
 	
-	public int intId;
-	public ProcName extId;
 	public String pName;
 	public Process myProc;
 	public Process parentProcess;
