@@ -41,7 +41,7 @@ public class ProcessManager {
 		} else if (candidate != null && os.runProcess != null){
 			//Jei užimtas - tikrinam ar yra svarbesnių procesų
 			if (candidate.pDesc.priority > os.runProcess.pDesc.priority &&
-					os.runProcess.pDesc.pState == ProcessState.READY){
+					os.runProcess.pDesc.pState == ProcessState.PASIRUOSES){
 				stopProcess();
 				prepareProcess(candidate);
 			}
@@ -67,7 +67,7 @@ public class ProcessManager {
 	 */
 	private void prepareProcess(Process newProcess) {
 		os.runProcess = newProcess;
-		newProcess.pDesc.pState = ProcessState.RUN;
+		newProcess.pDesc.pState = ProcessState.VYKDOMAS;
 		os.readyProcesses.remove(newProcess);
 		newProcess.loadCPU();
 		newProcess.resetTimer();
@@ -80,10 +80,10 @@ public class ProcessManager {
 	private void checkCurrent(){
 		Process proc = os.runProcess;
 		
-		if (proc.pDesc.pState == ProcessState.BLOCKED){
+		if (proc.pDesc.pState == ProcessState.BLOKUOTAS){
 			stopProcess();
-		} else if (proc.pDesc.pState == ProcessState.READY) {
-				proc.pDesc.pState = ProcessState.RUN;
+		} else if (proc.pDesc.pState == ProcessState.PASIRUOSES) {
+				proc.pDesc.pState = ProcessState.VYKDOMAS;
 		}
 	}
 	
@@ -98,7 +98,7 @@ public class ProcessManager {
 		//Save CPU state
 		proc.saveCPU();
 		
-		if (proc.pDesc.pState != ProcessState.BLOCKED){
+		if (proc.pDesc.pState != ProcessState.BLOKUOTAS){
 			os.readyProcesses.add(proc);
 			
 		} else {
