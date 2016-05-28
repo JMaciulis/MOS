@@ -30,10 +30,10 @@ public class VirtualMachine extends os.Process {
 	
 	
 	//References to registers for ease of use
-	public Register4B regR1, regR2;
-	public Register2B regIC;
-	public RegisterLogicByte regC;
-	public Register4B regSP;
+	public Register2B regKS;
+        public Register2B regSK;
+        public Register2B regSV;
+	
 	
 	public VMemory memory;
 		
