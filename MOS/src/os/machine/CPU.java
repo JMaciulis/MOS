@@ -20,7 +20,7 @@ public class CPU {
     public Register4B regPLR;
     public Register2B regKS;
     public Register2B regSV;
-    public Register4B regSK;
+    public Register2B regSK;
     public Register2B regC;
     public Register2B regCA;
 
@@ -143,7 +143,7 @@ public class CPU {
         return regSV;
     }
 
-    public Register4B getRegSK() {
+    public Register2B getRegSK() {
         return regSK;
     }
 
