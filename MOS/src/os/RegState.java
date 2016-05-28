@@ -12,7 +12,7 @@ import os.virtualmachine.registers.RegisterLogic;
 
 /**
  *
- * @author Mantas
+ * @author Mantas sss
  */
 public class RegState {
 	
