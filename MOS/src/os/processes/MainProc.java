@@ -22,7 +22,7 @@ public class MainProc extends os.Process{
 
 
 	public MainProc(int intId, ProcName extId, String pName,
-			LinkedList<Process> processList, Process parentProcess, CPU cpu,
+			LinkedList<os.Process> processList, os.Process parentProcess, CPU cpu,
 			OS os, ProcessState pState, int priority) {
 		super(intId, extId, pName, processList, parentProcess, cpu, os, pState,
 				priority);
