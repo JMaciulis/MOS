@@ -45,11 +45,9 @@ public class VirtualMachine extends os.Process {
 				priority);
 		
 		//For ease of use
-		this.regC = cpu.getRegC();
-		this.regIC = cpu.getRegIC();
-		this.regR1 = cpu.getRegR1();
-		this.regR2 = cpu.getRegR2();
-		this.regSP = cpu.getRegSP();
+		this.regKS = cpu.getRegKS();
+		this.regSK = cpu.getRegSK();
+		this.regSV = cpu.getRegSV();
 				
 		this.pDesc.savedState.saveState(cpu);
 				
