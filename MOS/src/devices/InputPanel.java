@@ -6,6 +6,7 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import os.OS;
+import os.OS.ResName;
 
 public class InputPanel extends javax.swing.JPanel {
     
@@ -40,7 +41,7 @@ public class InputPanel extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String tmp = inputField.getText();
-            os.createResource(os.starStopProc, ResName.IVEDIMO_SRAUTAS2, tmp);
+            os.createResource(os.starStopProc, ResName.INPUT, tmp); //Ivedimo_srautas2
             jLabel1.setText("");
             inputField.setText("");
             inputField.setEditable(false);
@@ -59,7 +60,7 @@ public class InputPanel extends javax.swing.JPanel {
                 File f = new File(fp);
                 if (f.exists()){
                     os.createResource(
-                    os.starStopProc, ResName.IVEDIMO_SRAUTAS, new File(fp));
+                    os.starStopProc, ResName.INPUT, new File(fp)); //Ivedimo srautas
                     os.printStuffDevice("SUCCESS: " + fp + " loaded :(");
                 } else {
                     os.printStuffDevice("ERROR: " + fp + " does not exist :(");
